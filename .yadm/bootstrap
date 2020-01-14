@@ -1,0 +1,40 @@
+#!/bin/sh
+
+echo "Bootstrap vim plugins"
+PLUGINPATH=~/.vim/pack/plugins/start
+mkdir -p ${PLUGINPATH}
+
+echo "* vim-sensible"
+if [ ! -d ${PLUGINPATH}/vim-sensible ]; then
+  git clone -q https://github.com/tpope/vim-sensible.git ${PLUGINPATH}/vim-sensible
+else echo "** exists"
+fi
+
+echo "* vim-fugitive"
+if [ ! -d ${PLUGINPATH}/vim-fugitive ]; then
+  git clone -q https://github.com/tpope/vim-fugitive.git ${PLUGINPATH}/vim-fugitive
+  vim -u NONE -c ":helptags ${PLUGINPATH}/vim-fugitive/doc" -c q
+else echo "** exists"
+fi
+
+echo "* vim-unimpaired"
+if [ ! -d ${PLUGINPATH}/vim-unimpaired ]; then
+  git clone -q https://github.com/tpope/vim-unimpaired.git ${PLUGINPATH}/vim-unimpaired
+else echo "** exists"
+fi
+
+echo "Create vim temp file dir"
+VIMTEMPDIR=~/.vim/tmp
+mkdir -p $VIMTEMPDIR
+
+echo "Add sourcing of bashrc additions"
+LINE=". .bashrc-additions"
+grep -q "${LINE}" "${HOME}/.bashrc" || echo "${LINE}" >> "${HOME}/.bashrc"
+
+echo "Source new .bashrc"
+. "${HOME}/.bashrc"
+
+echo "Add basic git config"
+git config --global alias.puu "log --oneline --decorate --graph --all"
+git config --global alias.co "checkout"
+git config --global alias.cp "cherry-pick"
