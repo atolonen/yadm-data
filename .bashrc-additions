@@ -1,2 +1,2 @@
 export EDITOR=vi
-hash keychain 2>/dev/null && eval $(keychain --eval --quiet --agents ssh id_rsa)
+hash keychain 2>/dev/null && eval $(keychain --eval --quiet --agents ssh)
