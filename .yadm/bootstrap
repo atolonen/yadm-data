@@ -28,7 +28,7 @@ VIMTEMPDIR=~/.vim/tmp
 mkdir -p $VIMTEMPDIR
 
 echo "Add sourcing of bashrc additions"
-LINE=". .bashrc-additions"
+LINE=". ~/.bashrc-additions"
 grep -q "${LINE}" "${HOME}/.bashrc" || echo "${LINE}" >> "${HOME}/.bashrc"
 
 echo "Source new .bashrc"
