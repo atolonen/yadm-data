@@ -31,10 +31,9 @@ echo "Add sourcing of bashrc additions"
 LINE=". ~/.bashrc-additions"
 grep -q "${LINE}" "${HOME}/.bashrc" || echo "${LINE}" >> "${HOME}/.bashrc"
 
-echo "Source new .bashrc"
-. "${HOME}/.bashrc"
-
 echo "Add basic git config"
 git config --global alias.puu "log --oneline --decorate --graph --all"
 git config --global alias.co "checkout"
 git config --global alias.cp "cherry-pick"
+
+echo "Source .bashrc or logout/login to apply changes"
